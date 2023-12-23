@@ -5,12 +5,10 @@ class chatgpt:
         self.messages = []
         self.client = OpenAI(api_key="your key")
 
-    def generate(self):
-        # get user input
-        message = input()
+    def generate(self, user_input):
 
         # add user input to messages
-        self.messages.append({"role":"user", "content":message})
+        self.messages.append({"role":"user", "content":user_input})
         response = self.client.chat.completions.create(
             model = "gpt-3.5-turbo",
             messages = self.messages
@@ -27,7 +25,7 @@ def main():
 
     # repeating asking questions
     while input != "q":
-        gpt.generate()
+        gpt.generate(input())
     print("Have a great time")
 
 main()
